@@ -1,0 +1,32 @@
+"""Tells you whether a student passed, based on a single score."""
+
+PASS_MARK = 50  # change this to match your grading scale
+
+
+def get_score():
+    """Keep asking until the user enters a valid score between 0 and 100."""
+    while True:
+        raw = input("Enter the student's score (0-100): ").strip()
+        try:
+            score = float(raw)
+        except ValueError:
+            print("  Please enter a number.")
+            continue
+        if not 0 <= score <= 100:
+            print("  Score must be between 0 and 100.")
+            continue
+        return score
+
+
+def main():
+    name = input("Student name: ").strip() or "The student"
+    score = get_score()
+
+    if score >= PASS_MARK:
+        print(f"{name} PASSED with a score of {score:g}.")
+    else:
+        print(f"{name} did NOT pass (score {score:g}, pass mark {PASS_MARK}).")
+
+
+if __name__ == "__main__":
+    main()
